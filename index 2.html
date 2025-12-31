@@ -1,0 +1,790 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitchen and Decor Center | Home Remodeling & Renovation West Miami FL</title>
+  <meta name="description" content="Professional home remodeling and renovation services in West Miami, FL. Specializing in kitchen, bathroom, closet, and flooring remodeling. Contact Kitchen and Decor Center for your dream home transformation.">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    
+    :root { 
+      --primary: #8B4513; --accent: #F4A460; --bg: #0A0A0B; --surface: #18181B; --text: #FAFAFA; --muted: #A1A1AA;
+      --bg-light: #FAFAFA; --surface-light: #FFFFFF; --text-light: #1A1A1A; --muted-light: #6B7280;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+    body.light-mode { background: var(--bg-light); color: var(--text-light); }
+    body.light-mode .alt { background: var(--surface-light); }
+    body.light-mode nav { background: var(--bg-light); }
+    body.light-mode .service-card, body.light-mode .testimonial, body.light-mode .pricing-card, body.light-mode .feature-card { background: var(--surface-light); border-color: #E5E7EB; }
+    body.light-mode p, body.light-mode .muted { color: var(--muted-light); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    
+    /* DARK/LIGHT MODE TOGGLE */
+    .theme-toggle { 
+      position: fixed; bottom: 100px; right: 24px; z-index: 9998;
+      width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer;
+      background: var(--surface); box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .theme-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .theme-toggle svg { width: 24px; height: 24px; color: var(--text); transition: transform 0.3s; }
+    .theme-toggle:hover svg { transform: rotate(180deg); }
+    body.light-mode .theme-toggle { background: var(--text-light); }
+    body.light-mode .theme-toggle svg { color: white; }
+    
+    /* FLOATING CTA BUTTON */
+    .floating-cta {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      display: flex; align-items: center; gap: 10px;
+      padding: 16px 28px; border-radius: 50px; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white; font-weight: 700; font-size: 15px; text-decoration: none;
+      box-shadow: 0 8px 30px #8B451350;
+      animation: floatCTA 3s ease-in-out infinite;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .floating-cta:hover { transform: scale(1.08) translateY(-3px); box-shadow: 0 12px 40px #8B451370; }
+    .floating-cta svg { width: 20px; height: 20px; }
+    .floating-cta .cta-pulse { 
+      position: absolute; top: -4px; right: -4px; width: 16px; height: 16px;
+      background: #10B981; border-radius: 50%; border: 3px solid var(--bg);
+      animation: ctaPulse 2s ease-in-out infinite;
+    }
+    @keyframes floatCTA { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes ctaPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.7; } }
+    
+    /* TRUST BADGES BAR */
+    .trust-badges-bar { 
+      background: linear-gradient(90deg, var(--surface), #18181BCC, var(--surface));
+      padding: 16px 24px; border-bottom: 1px solid #A1A1AA15;
+    }
+    .trust-badges-bar .container { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .trust-badge-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: var(--muted); }
+    .trust-badge-item svg { color: var(--primary); width: 20px; height: 20px; }
+    .trust-badge-item.verified svg { color: #10B981; }
+    .trust-badge-item img { height: 24px; opacity: 0.7; }
+    
+    /* CLIENT LOGO CAROUSEL */
+    .logo-carousel { padding: 48px 0; overflow: hidden; background: var(--surface); border-top: 1px solid #A1A1AA10; border-bottom: 1px solid #A1A1AA10; }
+    .logo-carousel-header { text-align: center; margin-bottom: 32px; }
+    .logo-carousel-header p { font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); }
+    .logo-track { display: flex; animation: scrollLogos 30s linear infinite; width: max-content; }
+    .logo-track:hover { animation-play-state: paused; }
+    .logo-item { flex: 0 0 auto; padding: 0 48px; display: flex; align-items: center; justify-content: center; }
+    .logo-item img { height: 32px; filter: grayscale(100%) brightness(1.5); opacity: 0.5; transition: all 0.3s; }
+    .logo-item:hover img { filter: grayscale(0%); opacity: 1; }
+    .logo-item span { font-size: 18px; font-weight: 700; color: var(--muted); letter-spacing: 0.05em; }
+    @keyframes scrollLogos { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    
+    /* ANIMATED STATS COUNTERS */
+    .stats-section { padding: 80px 24px; background: linear-gradient(135deg, #8B451308, #F4A46008); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+    .stat-card { padding: 32px 24px; }
+    .stat-card .counter { font-size: 3.5rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; line-height: 1; }
+    .stat-card .counter-suffix { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .stat-card .stat-label { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .stat-card .stat-icon { width: 48px; height: 48px; background: #8B451315; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .stat-card .stat-icon svg { color: var(--primary); width: 24px; height: 24px; }
+    
+    /* BUTTON STYLES WITH HOVER ANIMATIONS */
+    .btn { 
+      display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; 
+      font-weight: 600; font-size: 14px; text-decoration: none; border: none; cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+      position: relative; overflow: hidden;
+    }
+    .btn::before {
+      content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .btn:hover::before { opacity: 1; }
+    .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 15px #8B451340; }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px #8B451360; }
+    .btn-outline { border: 1px solid #A1A1AA40; color: var(--text); background: transparent; }
+    .btn-outline:hover { background: #A1A1AA10; border-color: var(--primary); transform: translateY(-2px); }
+    .btn-large { padding: 18px 36px; font-size: 16px; }
+    
+    section { padding: 80px 24px; }
+    section.alt { background: var(--surface); }
+    
+    /* SECTION HEADERS WITH ANIMATION */
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-header span { 
+      font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary);
+      display: inline-block; padding: 8px 16px; background: #8B451315; border-radius: 30px; margin-bottom: 12px;
+    }
+    .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-top: 8px; letter-spacing: -0.02em; }
+    
+    /* SCROLL REVEAL ANIMATIONS */
+    .reveal { 
+      opacity: 0; transform: translateY(40px); 
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-60px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(60px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal-right.active { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(0.9); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal-scale.active { opacity: 1; transform: scale(1); }
+    
+    /* STAGGER ANIMATION DELAYS */
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+    .stagger-6 { transition-delay: 0.6s; }
+    
+    /* HOVER EFFECTS FOR CARDS */
+    .card-hover { 
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+      will-change: transform, box-shadow;
+    }
+    .card-hover:hover { 
+      transform: translateY(-8px) scale(1.02); 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px #8B451330;
+    }
+    
+    /* IMAGE HOVER EFFECTS */
+    .img-hover { overflow: hidden; }
+    .img-hover img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s; }
+    .img-hover:hover img { transform: scale(1.1); filter: brightness(1.1); }
+    
+    /* GRADIENT TEXT ANIMATION */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary));
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: gradientShift 4s ease infinite;
+    }
+    @keyframes gradientShift { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+    
+    /* FLOATING ANIMATION */
+    .float { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    
+    /* PULSE GLOW EFFECT */
+    .pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+    @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 20px #8B451340; } 50% { box-shadow: 0 0 40px #8B451370; } }
+    
+    /* UNDERLINE HOVER EFFECT FOR LINKS */
+    .link-hover { position: relative; text-decoration: none; }
+    .link-hover::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+      background: var(--primary); transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .link-hover:hover::after { width: 100%; }
+    
+    /* SMOOTH SCROLL */
+    html { scroll-behavior: smooth; }
+    
+    /* CONTACT FORM STYLES */
+    .contact-form { background: var(--surface); padding: 40px; border-radius: 20px; border: 1px solid #A1A1AA15; }
+    .contact-form h3 { font-size: 1.5rem; margin-bottom: 24px; text-align: center; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group.full-width { grid-column: span 2; }
+    .form-group label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--muted); }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 14px 16px; border: 1px solid #A1A1AA30; border-radius: 10px;
+      background: var(--bg); color: var(--text); font-size: 15px; font-family: inherit;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px #8B451320;
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: #A1A1AA80; }
+    .form-submit { 
+      background: var(--primary); color: white; padding: 16px 32px; border: none; border-radius: 10px;
+      font-size: 15px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 25px #8B451340; }
+    .form-success { display: none; text-align: center; padding: 40px; }
+    .form-success.show { display: block; }
+    .form-success svg { color: var(--primary); margin-bottom: 16px; }
+    .form-success h4 { font-size: 1.5rem; margin-bottom: 8px; }
+    .form-success p { color: var(--muted); }
+    
+    /* GOOGLE MAPS EMBED */
+    .map-container { border-radius: 16px; overflow: hidden; height: 400px; border: 1px solid #A1A1AA20; }
+    .map-container iframe { width: 100%; height: 100%; border: 0; filter: grayscale(20%) contrast(1.1); }
+    .map-overlay { position: relative; }
+    .map-info-card { 
+      position: absolute; top: 24px; left: 24px; background: var(--surface); padding: 24px; 
+      border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); max-width: 280px; z-index: 10;
+    }
+    .map-info-card h4 { font-size: 1.1rem; margin-bottom: 12px; }
+    .map-info-card p { font-size: 13px; color: var(--muted); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .map-info-card a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    
+    /* SOCIAL MEDIA LINKS */
+    .social-links { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
+    .social-link { 
+      width: 44px; height: 44px; border-radius: 50%; background: #A1A1AA15; 
+      display: flex; align-items: center; justify-content: center; 
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); color: var(--muted);
+    }
+    .social-link:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+    .social-link svg { width: 20px; height: 20px; }
+    
+    /* SOCIAL FEED SECTION */
+    .social-feed { padding: 60px 24px; background: var(--surface); }
+    .social-feed-header { text-align: center; margin-bottom: 32px; }
+    .social-feed-header h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .social-feed-header p { color: var(--muted); }
+    .social-feed-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+    .social-feed-item { aspect-ratio: 1; overflow: hidden; position: relative; cursor: pointer; }
+    .social-feed-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .social-feed-item:hover img { transform: scale(1.1); }
+    .social-feed-item::after { 
+      content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.3); opacity: 0; transition: opacity 0.3s;
+    }
+    .social-feed-item:hover::after { opacity: 1; }
+    
+    footer { padding: 60px 24px 32px; border-top: 1px solid #A1A1AA20; }
+    .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand h4 { font-size: 1.25rem; margin-bottom: 12px; }
+    .footer-brand p { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 16px; }
+    .footer-column h5 { font-size: 14px; font-weight: 600; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .footer-column a { display: block; color: var(--muted); text-decoration: none; font-size: 14px; padding: 6px 0; transition: color 0.2s; }
+    .footer-column a:hover { color: var(--primary); }
+    .footer-bottom { text-align: center; padding-top: 32px; border-top: 1px solid #A1A1AA15; }
+    .footer-bottom p { color: var(--muted); font-size: 13px; }
+    
+    @media (max-width: 768px) { 
+      .hide-mobile { display: none; } 
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full-width { grid-column: span 1; }
+      .social-feed-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-content { grid-template-columns: 1fr; gap: 32px; }
+      .map-info-card { position: static; max-width: 100%; margin-bottom: 16px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .floating-cta { padding: 14px 20px; font-size: 14px; }
+      .trust-badges-bar .container { gap: 24px; }
+    }
+  
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; }
+    
+    nav { position: sticky; top: 0; z-index: 100; background: #0A0A0BCC; backdrop-filter: blur(12px); border-bottom: 1px solid #A1A1AA20; }
+    nav .container { height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-links { display: flex; gap: 32px; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+    
+    .trust-bar { background: var(--surface); border-bottom: 1px solid #A1A1AA20; padding: 12px 0; }
+    .trust-bar .container { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+    
+    .hero { padding: 100px 24px; text-align: center; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.3; }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 20px; }
+    .hero p { font-size: 1.2rem; color: var(--muted); max-width: 600px; margin: 0 auto 32px; }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .about-img { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+    .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+    .highlight { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+    
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+    .service-card { background: var(--surface); padding: 32px; border-radius: 16px; border: 1px solid #A1A1AA20; }
+    .service-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+    .service-card p { color: var(--muted); font-size: 14px; }
+    
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .testimonial { background: var(--surface); padding: 32px; border-radius: 16px; }
+    .testimonial-content { margin-bottom: 20px; line-height: 1.7; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; }
+    .testimonial-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .contact-section { text-align: center; }
+    .contact-info { display: flex; justify-content: center; gap: 48px; margin-top: 32px; flex-wrap: wrap; }
+    
+    @media (max-width: 768px) { 
+      .about-grid { grid-template-columns: 1fr; } 
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="#" style="font-weight: 700; font-size: 18px; color: var(--text);">Kitchen and Decor Center</a>
+      <div class="nav-links hide-mobile">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="btn btn-primary">Get Started</a>
+    </div>
+  </nav>
+  
+  
+  
+  <section class="hero">
+    <div class="hero-bg" style="background-image: url('https://keqcokxrzhpdiypekgjl.supabase.co/storage/v1/object/public/website-images/08cf32cf-8089-4fb5-a417-b76504d2019a/85d0a776-f4ee-4c91-8918-d4b4f08be705/hero-1767146888508.png');"></div>
+    <div class="hero-content container">
+      <h1>Transform Your Home with Kitchen and Decor Center</h1>
+      <p>Expert Remodeling Services for Kitchens, Baths, Closets & Flooring in West Miami</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Get Started →</a>
+        <a href="#about" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+  </section>
+  
+  <section id="about" class="alt">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <span style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary);">About Us</span>
+          <h2 style="font-size: 2rem; margin: 12px 0 16px;">Our Story</h2>
+          <p style="color: var(--muted);">Kitchen and Decor Center is a professional home remodeling and renovation company dedicated to creating beautiful and functional spaces. With years of experience serving West Miami, we pride ourselves on exceptional craftsmanship, personalized design, and reliable service. We transform houses into dream homes, one project at a time.</p>
+          <div class="highlights">
+            <div class="highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B4513" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Custom Design Solutions</div><div class="highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B4513" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Experienced Craftsmen</div><div class="highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B4513" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Quality Materials</div><div class="highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B4513" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Customer Satisfaction</div>
+          </div>
+        </div>
+        <div class="about-img">
+          <img src="https://keqcokxrzhpdiypekgjl.supabase.co/storage/v1/object/public/website-images/08cf32cf-8089-4fb5-a417-b76504d2019a/85d0a776-f4ee-4c91-8918-d4b4f08be705/about-1767146888508.png" alt="About">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <span>Our Services</span>
+        <h2>Our Services</h2>
+      </div>
+      <div class="services-grid">
+        
+          <div class="service-card">
+            <h3>Kitchen Remodeling</h3>
+            <p>From custom cabinetry to modern appliances, we design and build kitchens that are both beautiful and highly functional, perfect for cooking and entertaining.</p>
+          </div>
+        
+          <div class="service-card">
+            <h3>Bathroom Remodeling</h3>
+            <p>Create your personal oasis with our bathroom remodeling services, offering luxurious fixtures, stylish tiles, and efficient layouts for ultimate comfort.</p>
+          </div>
+        
+          <div class="service-card">
+            <h3>Closet Remodeling</h3>
+            <p>Maximize your storage and organize your life with our custom closet design and installation, tailored to your specific needs and style.</p>
+          </div>
+        
+          <div class="service-card">
+            <h3>Flooring Remodeling</h3>
+            <p>Enhance the beauty and durability of your home with our wide selection of flooring options, including hardwood, tile, laminate, and more, professionally installed.</p>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+  
+  <section class="alt">
+    <div class="container">
+      <div class="section-header">
+        <span>Testimonials</span>
+        <h2>What People Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        
+          <div class="testimonial">
+            <p class="testimonial-content">"Kitchen and Decor Center transformed my outdated kitchen into a modern masterpiece! The team was professional, detail-oriented, and completed the project on time and within budget. Highly recommend!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="https://keqcokxrzhpdiypekgjl.supabase.co/storage/v1/object/public/website-images/08cf32cf-8089-4fb5-a417-b76504d2019a/85d0a776-f4ee-4c91-8918-d4b4f08be705/avatar-0-1767146888508.png" alt="Maria G.">
+              </div>
+              <div>
+                <div style="font-weight: 600;">Maria G.</div>
+                <div style="font-size: 13px; color: var(--muted);">Homeowner, West Miami</div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="testimonial">
+            <p class="testimonial-content">"We've used Kitchen and Decor Center for several bathroom and flooring renovations in our properties. Their quality of work is consistently excellent, and their communication is superb. A truly reliable partner."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="https://keqcokxrzhpdiypekgjl.supabase.co/storage/v1/object/public/website-images/08cf32cf-8089-4fb5-a417-b76504d2019a/85d0a776-f4ee-4c91-8918-d4b4f08be705/avatar-1-1767146888508.png" alt="David R.">
+              </div>
+              <div>
+                <div style="font-weight: 600;">David R.</div>
+                <div style="font-size: 13px; color: var(--muted);">Property Manager, Miami</div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+  
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span>Contact</span>
+        <h2>Contact Us</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px;">
+        <div class="reveal-left">
+          
+    <div class="contact-form reveal">
+      <div class="form-content">
+        <h3>Send Us a Message</h3>
+        <form>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">Select a topic</option>
+                <option value="general">General Inquiry</option>
+                <option value="quote">Request a Quote</option>
+                <option value="appointment">Book Appointment</option>
+                <option value="support">Support</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+      <div class="form-success">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="16 8 10 14 8 12"/>
+        </svg>
+        <h4>Message Sent!</h4>
+        <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+      </div>
+    </div>
+  
+        </div>
+        <div class="reveal-right">
+          
+    <div class="map-overlay reveal">
+      <div class="map-info-card">
+        <h4>Kitchen and Decor Center</h4>
+        <p><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 5701 SW 8th St, West Miami, FL 33144</p>
+        <p><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:(305) 555-1234">(305) 555-1234</a></p>
+        <p><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon-Fri: 9:00 AM - 6:00 PM, Sat: 10:00 AM - 3:00 PM</p>
+      </div>
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=5701%20SW%208th%20St%2C%20West%20Miami%2C%20FL%2033144"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 48px;">
+        
+    <div class="social-links">
+      <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="Twitter/X" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+  
+      </div>
+    </div>
+  </section>
+  
+  
+    <div class="trust-badges-bar">
+      <div class="container">
+        
+          <div class="trust-badge-item verified">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Trusted Since 2010</span>
+          </div>
+        
+          <div class="trust-badge-item verified">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Quality Guaranteed</span>
+          </div>
+        
+          <div class="trust-badge-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            <span>5-Star Reviews</span>
+          </div>
+        
+          <div class="trust-badge-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>10,000+ Happy Customers</span>
+          </div>
+        
+      </div>
+    </div>
+  
+  
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          
+            <div class="stat-card reveal stagger-1">
+              <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="counter" data-target="500" data-suffix="+">0</div>
+              <div class="stat-label">Happy Customers</div>
+            </div>
+          
+            <div class="stat-card reveal stagger-2">
+              <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="counter" data-target="10" data-suffix="+">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          
+            <div class="stat-card reveal stagger-3">
+              <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+              <div class="counter" data-target="50" data-suffix="+">0</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+          
+            <div class="stat-card reveal stagger-4">
+              <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+              <div class="counter" data-target="99" data-suffix="%">0</div>
+              <div class="stat-label">Satisfaction Rate</div>
+            </div>
+          
+        </div>
+      </div>
+    </section>
+  
+  
+  
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <h4>Kitchen and Decor Center</h4>
+            <p>Kitchen and Decor Center is a professional home remodeling and renovation company dedicated to creating beautiful and functional spaces. With years of...</p>
+            
+    <div class="social-links">
+      <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="Twitter/X" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+  
+          </div>
+          <div class="footer-column">
+            <h5>Quick Links</h5>
+            <a href="#about">About Us</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="#testimonials">Reviews</a>
+          </div>
+          <div class="footer-column">
+            <h5>Contact</h5>
+            <a href="tel:(305) 555-1234">(305) 555-1234</a>
+            <a href="mailto:info@kitchendecorcenter.com">info@kitchendecorcenter.com</a>
+            <a href="#contact">5701 SW 8th St, West Miami, FL 33144</a>
+          </div>
+          <div class="footer-column">
+            <h5>Hours</h5>
+            <a href="#">Mon-Fri: 9am-6pm</a>
+            <a href="#">Saturday: 10am-4pm</a>
+            <a href="#">Sunday: Closed</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Kitchen and Decor Center. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  
+  
+    <a href="#contact" class="floating-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Get Started
+      <span class="cta-pulse"></span>
+    </a>
+  
+  
+    <button class="theme-toggle" aria-label="Toggle dark/light mode">
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="sun-icon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  
+  
+    <script>
+      // Scroll Reveal Animation Observer
+      const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      revealElements.forEach(el => revealObserver.observe(el));
+      
+      // Parallax effect for hero backgrounds
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxBg = document.querySelector('.hero-bg');
+        if (parallaxBg) {
+          parallaxBg.style.transform = 'translateY(' + (scrolled * 0.4) + 'px)';
+        }
+        
+        // Nav scroll effect
+        const nav = document.querySelector('nav');
+        if (nav) {
+          nav.classList.toggle('scrolled', scrolled > 50);
+        }
+      });
+      
+      // Dark/Light Mode Toggle
+      const themeToggle = document.querySelector('.theme-toggle');
+      if (themeToggle) {
+        // Check saved preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.body.classList.add('light-mode');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+          document.body.classList.toggle('light-mode');
+          const isLight = document.body.classList.contains('light-mode');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
+          
+          // Update icon
+          const moonIcon = themeToggle.querySelector('.moon-icon');
+          const sunIcon = themeToggle.querySelector('.sun-icon');
+          if (moonIcon && sunIcon) {
+            moonIcon.style.display = isLight ? 'none' : 'block';
+            sunIcon.style.display = isLight ? 'block' : 'none';
+          }
+        });
+      }
+      
+      // Enhanced counter animation for stats with suffix support
+      const animateCounters = () => {
+        document.querySelectorAll('.counter').forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target'));
+          const suffix = counter.getAttribute('data-suffix') || '';
+          const duration = 2000;
+          const start = performance.now();
+          const animate = (now) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = Math.floor(target * eased).toLocaleString() + suffix;
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        });
+      };
+      
+      // Trigger counter animation when any stats section is visible
+      const statsSections = document.querySelectorAll('.hero-stats, .stats-section, .stats-grid');
+      statsSections.forEach(section => {
+        const statsObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounters();
+              statsObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        statsObserver.observe(section);
+      });
+      
+      // Contact Form Handler
+      document.querySelectorAll('.contact-form form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const formData = new FormData(this);
+          const data = Object.fromEntries(formData);
+          console.log('Form submitted:', data);
+          
+          // Show success message
+          const formEl = this.closest('.contact-form');
+          const formContent = formEl.querySelector('.form-content');
+          const formSuccess = formEl.querySelector('.form-success');
+          
+          if (formContent && formSuccess) {
+            formContent.style.display = 'none';
+            formSuccess.classList.add('show');
+          }
+          
+          // Reset after 3 seconds
+          setTimeout(() => {
+            if (formContent && formSuccess) {
+              formContent.style.display = 'block';
+              formSuccess.classList.remove('show');
+              form.reset();
+            }
+          }, 3000);
+        });
+      });
+      
+      // Floating CTA visibility on scroll
+      const floatingCTA = document.querySelector('.floating-cta');
+      if (floatingCTA) {
+        window.addEventListener('scroll', () => {
+          const scrolled = window.pageYOffset;
+          floatingCTA.style.transform = scrolled > 300 ? 'translateY(0) scale(1)' : 'translateY(100px) scale(0.8)';
+          floatingCTA.style.opacity = scrolled > 300 ? '1' : '0';
+        });
+        // Initial state
+        floatingCTA.style.transform = 'translateY(100px) scale(0.8)';
+        floatingCTA.style.opacity = '0';
+        floatingCTA.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+    </script>
+  
+</body>
+</html>
